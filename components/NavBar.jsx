@@ -11,6 +11,7 @@ import {
 	TopNavigationAction,
 } from "@ui-kitten/components";
 import Icon from "react-native-vector-icons/Feather";
+import { Link } from "expo-router";
 
 export const Navbar = () => {
 	const [selectedIndex, setSelectedIndex] = React.useState(null);
@@ -33,7 +34,14 @@ export const Navbar = () => {
 			visible={visible}
 			onBackdropPress={toggleMenu}
 		>
-			<MenuItem title={"Tasks"} accessoryLeft={InfoIcon} />
+			<Link href={"/login"}>
+				<MenuItem title={"Login"} accessoryLeft={InfoIcon} />
+			</Link>
+
+			<Link href={"/register"}>
+				<MenuItem title={"Registro"} accessoryLeft={InfoIcon} />
+			</Link>
+
 			<MenuItem title={"Logout"} accessoryLeft={LogoutIcon} />
 		</OverflowMenu>
 	);
