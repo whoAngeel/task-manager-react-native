@@ -1,11 +1,11 @@
 import { Text } from "@ui-kitten/components";
-import React from "react";
 import { View } from "react-native";
+import { LoginForm } from "../components/forms/LoginForm";
 
 function login() {
 	return (
 		<View>
-			<Text category="h3">Login</Text>
+			<LoginForm />
 		</View>
 	);
 }

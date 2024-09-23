@@ -11,12 +11,12 @@ import {
 	TopNavigationAction,
 } from "@ui-kitten/components";
 import Icon from "react-native-vector-icons/Feather";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 export const Navbar = () => {
 	const [selectedIndex, setSelectedIndex] = React.useState(null);
 	const [visible, setVisible] = React.useState(false);
-
+	const router = useRouter();
 	const toggleMenu = () => setVisible(!visible);
 
 	const renderMenuAction = () => {
@@ -34,14 +34,22 @@ export const Navbar = () => {
 			visible={visible}
 			onBackdropPress={toggleMenu}
 		>
-			<Link href={"/login"}>
-				<MenuItem title={"Login"} accessoryLeft={InfoIcon} />
-			</Link>
-
-			<Link href={"/register"}>
-				<MenuItem title={"Registro"} accessoryLeft={InfoIcon} />
-			</Link>
-
+			<MenuItem
+				title={"Inicio de Sesión"}
+				onPress={() => {
+					setVisible(false);
+					router.push("/login");
+				}}
+				accessoryLeft={InfoIcon}
+			></MenuItem>
+			<MenuItem
+				title={"Registro"}
+				accessoryLeft={InfoIcon}
+				onPress={() => {
+					setVisible(false);
+					router.push("/register");
+				}}
+			/>
 			<MenuItem title={"Logout"} accessoryLeft={LogoutIcon} />
 		</OverflowMenu>
 	);
@@ -49,7 +57,7 @@ export const Navbar = () => {
 	const renderTitle = () => (
 		<View style={styles.titleContainer}>
 			<Avatar style={styles.logo} source={require("../assets/logo.png")} />
-			<Text category="h5">Task Manager</Text>
+			<Text category="h5">TaskMan</Text>
 		</View>
 	);
 	return (
